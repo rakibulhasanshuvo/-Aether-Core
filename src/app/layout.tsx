@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Manrope } from "next/font/google";
+import "material-symbols/outlined.css";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 
@@ -18,9 +19,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-      </head>
       <body suppressHydrationWarning className={`${spaceGrotesk.variable} ${manrope.variable} bg-surface text-on-surface font-body selection:bg-primary-container selection:text-black min-h-screen overflow-x-hidden`}>
         <AppShell>
           {children}
