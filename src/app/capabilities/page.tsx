@@ -95,7 +95,7 @@ export default function CapabilitiesPage() {
               <HolographicCard className="h-full">
                 <div className="p-12 flex flex-col justify-between min-h-[400px] group cursor-pointer h-full">
                   <div>
-                    <span className="material-symbols-outlined text-5xl text-primary-container mb-8" translate="no">hub</span>
+                    <span className="material-symbols-outlined text-5xl text-primary-container mb-8" translate="no" aria-hidden="true">hub</span>
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-white mb-6 uppercase tracking-tighter group-hover:text-primary-container transition-colors">
                       Distributed Architecture
                     </h2>
@@ -117,7 +117,7 @@ export default function CapabilitiesPage() {
             <SleekItem className="md:col-span-4">
               <HolographicCard className="h-full">
                 <div className="p-8 group cursor-pointer h-full flex flex-col justify-center">
-                  <span className="material-symbols-outlined text-4xl text-secondary mb-8" translate="no">security</span>
+                  <span className="material-symbols-outlined text-4xl text-secondary mb-8" translate="no" aria-hidden="true">security</span>
                   <h3 className="font-headline text-3xl font-bold text-white mb-6 uppercase tracking-tight group-hover:text-secondary transition-colors">
                     Encryption Layers
                   </h3>
@@ -143,7 +143,7 @@ export default function CapabilitiesPage() {
             <SleekItem className="md:col-span-4">
               <HolographicCard className="h-full">
                 <div className="p-8 group cursor-pointer h-full">
-                  <span className="material-symbols-outlined text-4xl text-[#00dbe7] mb-6" translate="no">query_stats</span>
+                  <span className="material-symbols-outlined text-4xl text-[#00dbe7] mb-6" translate="no" aria-hidden="true">query_stats</span>
                   <h4 className="font-headline text-xl font-bold text-white uppercase mb-4 tracking-tight group-hover:text-[#00dbe7] transition-colors">
                     Data Intelligence
                   </h4>
@@ -157,7 +157,7 @@ export default function CapabilitiesPage() {
             <SleekItem className="md:col-span-4">
               <HolographicCard className="h-full">
                 <div className="p-8 group cursor-pointer h-full bg-gradient-to-br from-white/[0.02] to-transparent">
-                  <span className="material-symbols-outlined text-4xl text-white mb-6" translate="no">speed</span>
+                  <span className="material-symbols-outlined text-4xl text-white mb-6" translate="no" aria-hidden="true">speed</span>
                   <h4 className="font-headline text-xl font-bold text-white uppercase mb-4 tracking-tight group-hover:scale-105 transition-transform">
                     Velocity Engine
                   </h4>
@@ -171,7 +171,7 @@ export default function CapabilitiesPage() {
             <SleekItem className="md:col-span-4">
               <HolographicCard className="h-full">
                 <div className="p-8 group cursor-pointer h-full">
-                  <span className="material-symbols-outlined text-4xl text-primary-container mb-6" translate="no">cloud_done</span>
+                  <span className="material-symbols-outlined text-4xl text-primary-container mb-6" translate="no" aria-hidden="true">cloud_done</span>
                   <h4 className="font-headline text-xl font-bold text-white uppercase mb-4 tracking-tight group-hover:text-primary-container transition-colors">
                     Cloud Synthesis
                   </h4>

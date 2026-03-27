@@ -70,7 +70,7 @@ export default function Sidebar() {
                           : 'text-[#393939] hover:text-[#B9CACB] hover:bg-[#201F1F]'
                       }`}
                     >
-                      <span className="material-symbols-outlined flex-shrink-0 relative z-20" translate="no">
+                      <span className="material-symbols-outlined flex-shrink-0 relative z-20" translate="no" aria-hidden="true">
                         {item.icon}
                       </span>
                       
@@ -114,7 +114,7 @@ export default function Sidebar() {
         >
           <motion.span 
             animate={{ x: isHovered ? 0 : 0 }}
-            className="material-symbols-outlined flex-shrink-0" 
+            className="material-symbols-outlined flex-shrink-0"  aria-hidden="true"
             translate="no"
           >
             send

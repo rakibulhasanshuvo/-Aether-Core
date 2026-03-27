@@ -5,7 +5,21 @@ import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/components/ui/MotionEffects';
 
+import { useState } from 'react';
+
 export default function NetworkPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    // Simulate network latency
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2500);
+  };
+
   return (
     <PageTransition>
       <div className="min-h-screen relative pt-20 pb-24 px-8 w-full max-w-7xl mx-auto">
@@ -80,7 +94,7 @@ export default function NetworkPage() {
                     <HolographicCard key={node.label}>
                       <a className="group flex items-center gap-4 p-5 rounded-xl transition-all cursor-pointer h-full" href="#">
                         <div className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white/[0.03] text-${node.color} group-hover:bg-${node.color} group-hover:text-black transition-all duration-500 shadow-inner`}>
-                          <span className="material-symbols-outlined text-2xl" translate="no">{node.icon}</span>
+                          <span className="material-symbols-outlined text-2xl" translate="no" aria-hidden="true">{node.icon}</span>
                         </div>
                         <span className="font-headline text-[10px] tracking-widest uppercase text-on-surface-variant group-hover:text-on-surface transition-colors">
                           {node.label}
@@ -109,7 +123,7 @@ export default function NetworkPage() {
                   </div>
                 </div>
 
-                <form className="space-y-12">
+                <form className="space-y-12" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div className="relative group/field">
                       <label className="absolute -top-7 left-0 font-headline text-[10px] tracking-[0.2em] uppercase text-on-surface-variant/40 group-focus-within/field:text-primary-container transition-colors" htmlFor="identity-string">Identity_String</label>
@@ -148,7 +162,7 @@ export default function NetworkPage() {
                       <option className="bg-[#131313]">GENERAL_SIGNAL</option>
                     </select>
                     <div className="absolute right-0 bottom-5 pointer-events-none text-primary-container/40 group-hover/field:text-primary-container transition-colors">
-                      <span className="material-symbols-outlined" translate="no">expand_more</span>
+                      <span className="material-symbols-outlined" translate="no" aria-hidden="true">expand_more</span>
                     </div>
                   </div>
 
@@ -173,7 +187,8 @@ export default function NetworkPage() {
                         <motion.span 
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="material-symbols-outlined text-[#002022] text-sm font-bold" 
+                          className="material-symbols-outlined text-[#002022] text-sm font-bold"
+                          aria-hidden="true"
                           translate="no"
                         >
                           check
@@ -186,17 +201,33 @@ export default function NetworkPage() {
                   </div>
 
                   <motion.button 
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full group relative overflow-hidden p-[1px] rounded-2xl transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] cursor-pointer" 
-                    type="button"
+                    whileHover={!isSubmitting ? { scale: 1.02 } : undefined}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : undefined}
+                    className={`w-full group relative overflow-hidden p-[1px] rounded-2xl transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] ${isSubmitting ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
+                    type="submit"
+                    disabled={isSubmitting}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-secondary-container to-primary-container bg-[length:200%_auto] animate-gradient-x"></div>
-                    <div className="relative bg-[#0a0a0a] py-8 flex justify-center items-center gap-6 rounded-[0.95rem] group-hover:bg-transparent transition-colors duration-500">
-                      <span className="font-headline font-black text-base tracking-[0.4em] uppercase text-primary-container group-hover:text-[#002022] transition-colors">
-                        Broadcast_Signal
-                      </span>
-                      <span className="material-symbols-outlined text-primary-container group-hover:text-[#002022] text-xl" translate="no">send</span>
+                    <div className={`relative bg-[#0a0a0a] py-8 flex justify-center items-center gap-6 rounded-[0.95rem] transition-colors duration-500 ${!isSubmitting ? 'group-hover:bg-transparent' : 'bg-[#050505]'}`}>
+                      {isSubmitting ? (
+                        <>
+                          <motion.div
+                            animate={{ opacity: [1, 0.5, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                            className="font-headline font-black text-base tracking-[0.4em] uppercase text-primary-container flex items-center gap-4"
+                          >
+                            <span className="w-2 h-2 bg-primary-container shadow-[0_0_10px_rgba(0,242,255,0.8)] animate-pulse" />
+                            Transmitting...
+                          </motion.div>
+                        </>
+                      ) : (
+                        <>
+                          <span className="font-headline font-black text-base tracking-[0.4em] uppercase text-primary-container group-hover:text-[#002022] transition-colors">
+                            Broadcast_Signal
+                          </span>
+                          <span className="material-symbols-outlined text-primary-container group-hover:text-[#002022] text-xl" translate="no" aria-hidden="true">send</span>
+                        </>
+                      )}
                     </div>
                   </motion.button>
                 </form>

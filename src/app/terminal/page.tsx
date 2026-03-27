@@ -40,7 +40,19 @@ const logs = [
   }
 ];
 
+import { useState } from 'react';
+
 export default function TerminalPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+  };
+
   return (
     <PageTransition>
       <div className="relative flex flex-col flex-grow w-full max-w-7xl mx-auto pt-20 pb-32 px-6 md:px-12">
@@ -87,7 +99,7 @@ export default function TerminalPage() {
                 type="text"
                 aria-label="Search terminal logs"
               />
-              <span className="material-symbols-outlined text-white/20 group-focus-within:text-primary-container transition-colors" translate="no">terminal</span>
+              <span className="material-symbols-outlined text-white/20 group-focus-within:text-primary-container transition-colors" translate="no" aria-hidden="true">terminal</span>
             </div>
             {/* Absolute accent line */}
             <motion.div 
@@ -162,7 +174,7 @@ export default function TerminalPage() {
                           className="absolute -bottom-1 left-0 w-full h-[1px] bg-primary-container origin-left scale-x-0 group-hover/link:scale-x-100 transition-transform" 
                         />
                       </span>
-                      <span className="material-symbols-outlined transition-transform text-lg" translate="no">arrow_forward_ios</span>
+                      <span className="material-symbols-outlined transition-transform text-lg" translate="no" aria-hidden="true">arrow_forward_ios</span>
                     </motion.a>
                   </div>
                 </div>
@@ -222,17 +234,20 @@ export default function TerminalPage() {
                   </p>
                   <div className="flex gap-3 group/input">
                     <input
-                      className="bg-[#131313] border border-white/5 focus:border-primary-container/30 focus:outline-none px-6 py-4 text-on-surface font-mono rounded-xl w-full text-sm transition-all"
+                      className="bg-[#131313] border border-white/5 focus:border-primary-container/30 focus:outline-none px-6 py-4 text-on-surface font-mono rounded-xl w-full text-sm transition-all disabled:opacity-50"
                       placeholder="neural-id@domain.net"
                       type="email"
                       aria-label="Email address for updates"
+                      disabled={isSubmitting}
                     />
                     <motion.button 
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="bg-primary-container text-[#002022] px-10 py-4 rounded-xl font-bold uppercase font-headline text-[10px] tracking-widest whitespace-nowrap cursor-pointer shadow-[0_0_20px_rgba(0,242,255,0.2)]"
+                      whileHover={!isSubmitting ? { scale: 1.05 } : undefined}
+                      whileTap={!isSubmitting ? { scale: 0.95 } : undefined}
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                      className={`bg-primary-container text-[#002022] px-10 py-4 rounded-xl font-bold uppercase font-headline text-[10px] tracking-widest whitespace-nowrap shadow-[0_0_20px_rgba(0,242,255,0.2)] ${isSubmitting ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
                     >
-                      Transmit
+                      {isSubmitting ? 'UPLOADING...' : 'Transmit'}
                     </motion.button>
                   </div>
                 </div>
