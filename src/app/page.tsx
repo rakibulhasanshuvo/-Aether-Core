@@ -101,7 +101,7 @@ export default function Home() {
                             '--accent-color': `${node.accent}40`
                           } as any}
                         >
-                          <span className="material-symbols-outlined text-2xl" translate="no">{node.icon}</span>
+                          <span className="material-symbols-outlined text-2xl" translate="no" aria-hidden="true">{node.icon}</span>
                         </div>
                         <div className="flex-1 min-w-0">
                           <h3 className="font-headline text-xl font-bold text-on-surface uppercase tracking-tight mb-2 group-hover:text-primary-container transition-colors">
@@ -114,6 +114,7 @@ export default function Home() {
                         <motion.span 
                           whileHover={{ x: 5 }}
                           className="material-symbols-outlined text-on-surface-variant/30 group-hover:text-primary-container transition-colors flex-shrink-0 mt-2"
+                          aria-hidden="true"
                         >
                           arrow_forward_ios
                         </motion.span>
