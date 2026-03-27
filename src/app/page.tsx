@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Hero from '@/components/home/Hero';
+import ProcessTimeline from '@/components/home/ProcessTimeline';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/components/ui/MotionEffects';
 import { motion } from 'framer-motion';
@@ -160,6 +161,9 @@ export default function Home() {
               </div>
             </section>
           </SleekItem>
+
+          {/* Process Timeline Section */}
+          <ProcessTimeline />
 
           {/* CTA Section */}
           <section className="text-center pt-12 pb-24 relative">
