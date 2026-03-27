@@ -128,8 +128,9 @@ export default function Home() {
           </section>
 
           {/* Featured Terminal Block */}
-          <SleekItem>
-            <section className="glass-card rounded-xl overflow-hidden group">
+          <SleekStagger delay={0.2}>
+            <SleekItem>
+              <section className="glass-card rounded-xl overflow-hidden group">
               <div className="bg-[#1c1b1b] border-b border-outline/10 px-6 py-3 flex items-center gap-3 group-hover:bg-[#252424] transition-colors">
                 <span className="w-2 h-2 rounded-full bg-error"></span>
                 <span className="w-2 h-2 rounded-full bg-[#FFB800]"></span>
@@ -159,8 +160,9 @@ export default function Home() {
                   />
                 </div>
               </div>
-            </section>
-          </SleekItem>
+              </section>
+            </SleekItem>
+          </SleekStagger>
 
           {/* Process Timeline Section */}
           <ProcessTimeline />
