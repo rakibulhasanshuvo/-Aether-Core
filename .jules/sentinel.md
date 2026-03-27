@@ -1,0 +1,4 @@
+## 2024-05-19 - Missing Security Headers in Next.js
+**Vulnerability:** The Next.js application was deployed without standard HTTP security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy).
+**Learning:** This is a common architectural gap in modern full-stack frameworks where security headers are not enabled by default, increasing susceptibility to clickjacking, MIME-sniffing, and data leakage.
+**Prevention:** Include a configured `headers()` function in `next.config.ts` or an equivalent middleware file by default in future web projects to provide defense in depth.
