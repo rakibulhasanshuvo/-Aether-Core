@@ -170,10 +170,10 @@ export default function TerminalPage() {
                   </div>
                   
                   <div className="pt-8">
-                    <motion.a 
+                    <motion.button
                       whileHover={{ x: 10 }}
-                      className="inline-flex items-center gap-4 text-primary-container font-headline text-xs tracking-[0.2em] uppercase group/link cursor-pointer" 
-                      href="#"
+                      className="inline-flex items-center gap-4 text-primary-container font-headline text-xs tracking-[0.2em] uppercase group/link cursor-pointer bg-transparent border-none p-0"
+                      type="button"
                     >
                       <span className="relative">
                         [ Execute Deep Read ]
@@ -182,7 +182,7 @@ export default function TerminalPage() {
                         />
                       </span>
                       <span className="material-symbols-outlined transition-transform text-lg" translate="no" aria-hidden="true">arrow_forward_ios</span>
-                    </motion.a>
+                    </motion.button>
                   </div>
                 </div>
               </article>
