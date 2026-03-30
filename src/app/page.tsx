@@ -77,12 +77,14 @@ export default function Home() {
 
           {/* Quick Navigation Nodes */}
           <section>
-            <SleekItem className="flex items-center gap-3 mb-12">
-              <div className="w-1 h-6 bg-primary-container rounded-full"></div>
-              <h2 className="font-headline text-xs tracking-[0.3em] uppercase text-on-surface-variant">
-                <TextScramble text="SYSTEM_NODES" delay={1.2} />
-              </h2>
-            </SleekItem>
+            <SleekStagger delay={0.8}>
+              <SleekItem className="flex items-center gap-3 mb-12">
+                <div className="w-1 h-6 bg-primary-container rounded-full"></div>
+                <h2 className="font-headline text-xs tracking-[0.3em] uppercase text-on-surface-variant">
+                  <TextScramble text="SYSTEM_NODES" delay={1.2} />
+                </h2>
+              </SleekItem>
+            </SleekStagger>
             
             <SleekStagger className="grid grid-cols-1 md:grid-cols-2 gap-8" stagger={0.1}>
               {quickNodes.map((node) => (

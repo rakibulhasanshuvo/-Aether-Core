@@ -89,25 +89,27 @@ export default function TerminalPage() {
         </header>
 
         {/* Search / Filter Command Line */}
-        <SleekItem className="mb-24">
-          <div className="group relative">
-            <div className="flex items-center gap-6 bg-[#131313] p-5 rounded-2xl border border-white/5 focus-within:border-primary-container/30 focus-within:bg-[#0a0a0a] transition-all duration-500 shadow-2xl">
-              <span className="font-mono text-primary-container font-black whitespace-nowrap text-sm tracking-tighter">ARCHITECT@VOID:~$</span>
-              <input
-                className="bg-transparent border-none focus:outline-none focus:ring-0 text-primary-container font-mono w-full placeholder:text-white/10 text-base"
-                placeholder="grep --topic 'neural' ..."
-                type="text"
-                aria-label="Search terminal logs"
+        <SleekStagger delay={0.4}>
+          <SleekItem className="mb-24">
+            <div className="group relative">
+              <div className="flex items-center gap-6 bg-[#131313] p-5 rounded-2xl border border-white/5 focus-within:border-primary-container/30 focus-within:bg-[#0a0a0a] transition-all duration-500 shadow-2xl">
+                <span className="font-mono text-primary-container font-black whitespace-nowrap text-sm tracking-tighter">ARCHITECT@VOID:~$</span>
+                <input
+                  className="bg-transparent border-none focus:outline-none focus:ring-0 text-primary-container font-mono w-full placeholder:text-white/10 text-base"
+                  placeholder="grep --topic 'neural' ..."
+                  type="text"
+                  aria-label="Search terminal logs"
+                />
+                <span className="material-symbols-outlined text-white/10 animate-pulse text-lg" translate="no" aria-hidden="true">terminal</span>
+              </div>
+              {/* Ambient Line */}
+              <motion.div
+                layoutId="terminal-accent"
+                className="absolute -bottom-[1px] left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent"
               />
-              <span className="material-symbols-outlined text-white/20 group-focus-within:text-primary-container transition-colors" translate="no" aria-hidden="true">terminal</span>
             </div>
-            {/* Absolute accent line */}
-            <motion.div 
-              layoutId="terminal-accent"
-              className="absolute -bottom-[1px] left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent"
-            />
-          </div>
-        </SleekItem>
+          </SleekItem>
+        </SleekStagger>
 
         {/* Encrypted Logs Feed */}
         <SleekStagger className="space-y-40" stagger={0.2}>
@@ -184,10 +186,11 @@ export default function TerminalPage() {
         </SleekStagger>
 
         {/* Terminal Command Footer */}
-        <SleekItem>
-          <section className="mt-48 relative">
-            <div className="absolute inset-0 bg-primary-container/5 filter blur-[100px] pointer-events-none" />
-            <div className="relative bg-[#0a0a0a] p-10 rounded-3xl font-mono text-sm border border-white/5 shadow-2xl overflow-hidden">
+        <SleekStagger delay={0.4}>
+          <SleekItem>
+            <section className="mt-48 relative">
+              <div className="absolute inset-0 bg-primary-container/5 filter blur-[100px] pointer-events-none" />
+              <div className="relative bg-[#0a0a0a] p-10 rounded-3xl font-mono text-sm border border-white/5 shadow-2xl overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container/20 to-transparent" />
               
               <div className="mb-10 text-on-surface-variant/30 flex justify-between items-center text-[10px] tracking-widest uppercase">
@@ -259,7 +262,8 @@ export default function TerminalPage() {
               </div>
             </div>
           </section>
-        </SleekItem>
+          </SleekItem>
+        </SleekStagger>
       </div>
     </PageTransition>
   );

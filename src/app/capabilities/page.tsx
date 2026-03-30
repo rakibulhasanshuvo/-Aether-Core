@@ -185,14 +185,16 @@ export default function CapabilitiesPage() {
 
           {/* Skill Spectrum / Technical Matrix */}
           <section className="space-y-16 pb-32">
-            <SleekItem className="text-center">
-              <h2 className="font-headline text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">
-                Technical Matrix
-              </h2>
-              <p className="text-on-surface-variant/60 mt-4 max-w-lg mx-auto">
-                Current proficiency distribution models across core technical modules.
-              </p>
-            </SleekItem>
+            <SleekStagger delay={0.2}>
+              <SleekItem className="text-center">
+                <h2 className="font-headline text-3xl md:text-5xl font-bold uppercase tracking-widest text-white">
+                  Technical Matrix
+                </h2>
+                <p className="text-on-surface-variant/60 mt-4 max-w-lg mx-auto">
+                  Current proficiency distribution models across core technical modules.
+                </p>
+              </SleekItem>
+            </SleekStagger>
             
             <SleekStagger className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
