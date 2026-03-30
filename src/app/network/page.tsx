@@ -92,14 +92,14 @@ export default function NetworkPage() {
                     { label: 'MEDIA_FLOW', icon: 'play_circle', color: 'secondary' },
                   ].map((node) => (
                     <HolographicCard key={node.label}>
-                      <a className="group flex items-center gap-4 p-5 rounded-xl transition-all cursor-pointer h-full" href="#">
+                      <button className="group flex items-center gap-4 p-5 rounded-xl transition-all cursor-pointer h-full w-full bg-transparent border-none text-left" type="button">
                         <div className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white/[0.03] text-${node.color} group-hover:bg-${node.color} group-hover:text-black transition-all duration-500 shadow-inner`}>
                           <span className="material-symbols-outlined text-2xl" translate="no" aria-hidden="true">{node.icon}</span>
                         </div>
                         <span className="font-headline text-[10px] tracking-widest uppercase text-on-surface-variant group-hover:text-on-surface transition-colors">
                           {node.label}
                         </span>
-                      </a>
+                      </button>
                     </HolographicCard>
                   ))}
                 </div>
