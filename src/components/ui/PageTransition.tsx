@@ -22,7 +22,7 @@ const variants = {
     scale: 1,
     transition: {
       duration: DURATION_FLUID,
-      ease: EASE as any,
+      ease: EASE,
       staggerChildren: 0.1,
     }
   },
@@ -33,7 +33,7 @@ const variants = {
     scale: 0.99,
     transition: {
       duration: 0.3,
-      ease: EASE as any
+      ease: EASE
     }
   },
 };

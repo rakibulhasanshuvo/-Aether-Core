@@ -4,7 +4,7 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 // --- Cyber-Luxury Tokens ---
-export const EASE = [0.22, 1, 0.36, 1]; // Quart Out - Sleek/Premium
+export const EASE = [0.22, 1, 0.36, 1] as const; // Quart Out - Sleek/Premium
 export const DURATION_BASE = 0.4;
 export const DURATION_FLUID = 0.7;
 
@@ -108,7 +108,7 @@ export function SleekItem({ children, className = '' }: { children: ReactNode; c
           opacity: 1,
           y: 0,
           filter: 'blur(0px)',
-          transition: { duration: DURATION_BASE, ease: EASE as any },
+          transition: { duration: DURATION_BASE, ease: EASE },
         },
       }}
     >
@@ -145,7 +145,7 @@ export function HolographicCard({ children, className = '' }: { children: ReactN
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' } as any}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
       className={`relative group ${className}`}
     >
       {/* Dynamic Glow */}
@@ -159,7 +159,7 @@ export function HolographicCard({ children, className = '' }: { children: ReactN
               return `radial-gradient(circle at ${50 + (x / 4)}% ${50 + (y / 4)}%, rgba(0, 242, 255, 0.15) 0%, transparent 70%)`;
             }
           ),
-        } as any}
+        }}
       />
       
       <div className="relative z-10 glass-card rounded-xl p-1 border-white/10 group-hover:border-primary-container/30 transition-colors duration-500">
