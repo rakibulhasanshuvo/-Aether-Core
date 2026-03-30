@@ -109,8 +109,9 @@ export default function NetworkPage() {
 
           {/* Right Column: Central Terminal Form */}
           <div className="lg:col-span-12 xl:col-span-7">
-            <SleekItem className="h-full">
-              <div className="glass-card bg-[#0a0a0a]/60 p-10 md:p-16 rounded-3xl relative overflow-hidden shadow-2xl border border-white/5 h-full">
+            <SleekStagger delay={0.4}>
+              <SleekItem className="h-full">
+                <div className="glass-card bg-[#0a0a0a]/60 p-10 md:p-16 rounded-3xl relative overflow-hidden shadow-2xl border border-white/5 h-full">
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-container/30 to-transparent"></div>
                 
                 <div className="flex justify-between items-start mb-16">
@@ -247,13 +248,15 @@ export default function NetworkPage() {
                   </div>
                 </div>
               </div>
-            </SleekItem>
+              </SleekItem>
+            </SleekStagger>
           </div>
         </div>
 
         {/* System Scan Visual Elements */}
-        <SleekItem className="mt-40 opacity-60 pb-32">
-          <div className="flex justify-between items-center mb-6 font-headline text-[10px] tracking-[0.4em] text-on-surface-variant/40 uppercase px-4">
+        <SleekStagger delay={0.6}>
+          <SleekItem className="mt-40 opacity-60 pb-32">
+            <div className="flex justify-between items-center mb-6 font-headline text-[10px] tracking-[0.4em] text-on-surface-variant/40 uppercase px-4">
             <span>Core_Buffer_Stream</span>
             <span>Active_Encryption_Layers: 12</span>
           </div>
@@ -282,7 +285,8 @@ export default function NetworkPage() {
               />
             </div>
           </div>
-        </SleekItem>
+          </SleekItem>
+        </SleekStagger>
       </div>
     </PageTransition>
   );
