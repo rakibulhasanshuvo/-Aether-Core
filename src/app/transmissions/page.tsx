@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble, EASE } from '@/components/ui/MotionEffects';
+import Image from 'next/image';
+
+const MotionImage = motion(Image);
 
 export default function TransmissionsPage() {
   return (
@@ -78,12 +81,14 @@ export default function TransmissionsPage() {
 
               <SleekItem>
                 <div className="relative rounded-2xl overflow-hidden aspect-video group-hover:shadow-[0_0_50px_rgba(0,242,255,0.1)] transition-all duration-700 border border-white/5">
-                  <motion.img 
+                  <MotionImage
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 1 }}
                     alt="Abstract visualization of neural network pathways" 
                     className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCma9wsxqgYLkJj3qii3a1LbaifXzoT1BmPU-2_5RP4NFBUYAtq7-ssp5ZGpW20hr8EoXNjbszthyGvQhih-CsGkwK78UnWkEPh-eN-9WQGf4G0cNnjhVqx5O19YLCDjEpUoc_mM7xlfEqLEHJKPYod43nESwJlVbDNdxb-T7bNhdztS9wXiyuWcXaJIzTfvB0kS-F_rdN_PkTjtDqXRRG9KNw-IK58KMFQkAPrEHFdL1JZiGxcV-rohgcppqz5SvJgEgx9OVuGxDo"
+                    width={800}
+                    height={450}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
                 </div>
@@ -102,12 +107,14 @@ export default function TransmissionsPage() {
             <SleekStagger className="grid lg:grid-cols-2 gap-16 items-start" delay={0.3}>
               <SleekItem>
                 <div className="order-2 lg:order-1 relative rounded-2xl overflow-hidden aspect-video border border-white/5 shadow-2xl">
-                  <motion.img 
+                  <MotionImage
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 1 }}
                     alt="Cyberpunk cityscape with rain and neon lights" 
                     className="w-full h-full object-cover grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-80 transition-all duration-700" 
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmEkAtKqxNEhkqUJs6NneXu9ZdFgGCcBlLHcef5qVw6yqwjrt5kAgIwFHoQ55F2IbyzFN1aXqiQeZe5XjIDkQyOht9Nh-XFKRRXsZwgwEkdbdyA2FC-mDKPAdyHPW3ne9s8byteHiEr4H_I7qXpzz0E01MDa-oq5H1t4RvssEQYlOMF-sruB4ZJUENR3gKeK_2V2inq6ybecOOj9XNgdGxfClEYypdL8RvkOEEmxE5BuhmhzNOt5YnDo0IkqBaLOS8L69nXI-I7d4"
+                    width={800}
+                    height={450}
                   />
                   <div className="absolute inset-0 border border-secondary/10 m-3 rounded-xl pointer-events-none"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>

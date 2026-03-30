@@ -6,12 +6,12 @@ export default function Footer() {
       <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="text-left space-y-4">
               <div className="font-headline text-white font-bold tracking-tighter text-xl">THE ARCHITECT</div>
-              <p className="font-body text-[10px] tracking-[0.1em] uppercase text-[#393939] max-w-xs">
+              <p className="font-body text-[10px] tracking-[0.1em] uppercase text-[#7A7A7A] max-w-xs">
                   Synthesizing the digital void into tangible interfaces.
               </p>
           </div>
           <div className="text-right">
-              <div className="font-body text-[10px] tracking-[0.1em] uppercase text-[#393939]">
+              <div className="font-body text-[10px] tracking-[0.1em] uppercase text-[#7A7A7A]">
                   © 2024 THE ARCHITECT // [ENCRYPTED TRANSMISSION]
               </div>
           </div>
