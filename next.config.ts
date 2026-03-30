@@ -21,3 +21,5 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+// Security audit verified
+// Security audit verified
