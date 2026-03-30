@@ -53,13 +53,13 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-grow overflow-y-auto overflow-x-hidden scrollbar-none" aria-label="Main navigation">
-        <SleekStagger delay={0.2} stagger={0.05}>
-          <ul className="space-y-2" role="list">
+        <ul className="space-y-2" role="list">
+          <SleekStagger delay={0.2} stagger={0.05}>
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
-                <SleekItem key={item.href}>
-                  <li className="relative group/nav overflow-hidden">
+                <li key={item.href} className="relative group/nav overflow-hidden">
+                  <SleekItem>
                     <Link
                       href={item.href}
                       aria-label={item.label}
@@ -97,12 +97,12 @@ export default function Sidebar() {
                         />
                       )}
                     </Link>
-                  </li>
-                </SleekItem>
+                  </SleekItem>
+                </li>
               );
             })}
-          </ul>
-        </SleekStagger>
+          </SleekStagger>
+        </ul>
       </nav>
 
       {/* Footer / CTA */}

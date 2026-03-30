@@ -4,6 +4,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble, EASE } from '@/components/ui/MotionEffects';
+import Image from 'next/image';
+
+const MotionImage = motion(Image);
 
 const logs = [
   {
@@ -120,12 +123,14 @@ export default function TerminalPage() {
                 <div className="md:col-span-12 lg:col-span-5 sticky top-32">
                   <HolographicCard>
                     <div className="relative aspect-video rounded-xl overflow-hidden border border-white/5 bg-black">
-                      <motion.img 
+                      <MotionImage
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.8 }}
                         className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" 
                         alt={log.title} 
                         src={log.image}
+                        width={600}
+                        height={400}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60" />
                     </div>

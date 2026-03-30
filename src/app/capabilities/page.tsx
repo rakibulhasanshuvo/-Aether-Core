@@ -4,6 +4,9 @@ import React from 'react';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/components/ui/MotionEffects';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+const MotionImage = motion(Image);
 
 export default function CapabilitiesPage() {
   return (
@@ -33,13 +36,15 @@ export default function CapabilitiesPage() {
           <section className="relative h-[600px] w-full glass-card rounded-2xl overflow-hidden group border border-white/5">
             <div className="absolute inset-0 z-0 opacity-40">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-secondary/20 via-transparent to-transparent"></div>
-              <motion.img 
+              <MotionImage
                 initial={{ scale: 1.1, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 0.4 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="w-full h-full object-cover mix-blend-overlay" 
                 alt="abstract architectural technical nodes" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtHoGzs0GNldkMMo5Wu4fMZLNwUyOpLgXat-h0yGsAZBe-c4dpuadg2rE6sg6WwzjoOCdechm4OKz5zaQsAVnagChteVKGeROdBLM31dlT6lhkKZavjdXyQajdNFteCKdpOZJB5ckr33RiVYw9INtRAKGY4idcWqSUWqW6ddCFZrgoMQb0ORCv9jBrHB-IqgY71ZXgSkGxNo88gNHoEXW4YmKu2LUe-kXd1vB-h5jRgRcub9mVFlevBkCXKqSBuPJmcgEXIrBq31E"
+                width={1200}
+                height={600}
               />
             </div>
             
