@@ -7,6 +7,15 @@ import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/compon
 
 import { useState } from 'react';
 
+const SIGNAL_STRENGTH_VALUES = [0.4, 0.6, 0.8, 0.3];
+
+const SOCIAL_CONNECTIVITY_NODES = [
+  { label: 'X_SIGNAL', icon: 'alternate_email', color: 'primary-container' },
+  { label: 'GIT_NODE', icon: 'terminal', color: 'secondary' },
+  { label: 'LINKED_NET', icon: 'work', color: 'primary-container' },
+  { label: 'MEDIA_FLOW', icon: 'play_circle', color: 'secondary' },
+];
+
 export default function NetworkPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -50,7 +59,7 @@ export default function NetworkPage() {
                     <div>
                       <p className="font-headline text-[10px] tracking-widest text-on-surface-variant/40 uppercase mb-3">Signal_Strength</p>
                       <div className="flex gap-1.5 items-end h-6">
-                        {[0.4, 0.6, 0.8, 0.3].map((h, i) => (
+                        {SIGNAL_STRENGTH_VALUES.map((h, i) => (
                           <motion.div 
                             key={i}
                             initial={{ height: 0 }}
@@ -85,12 +94,7 @@ export default function NetworkPage() {
               <SleekItem>
                 <p className="font-headline text-[10px] tracking-widest text-on-surface-variant/40 uppercase mb-8 ml-1">Social_Connectivity_Nodes</p>
                 <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { label: 'X_SIGNAL', icon: 'alternate_email', color: 'primary-container' },
-                    { label: 'GIT_NODE', icon: 'terminal', color: 'secondary' },
-                    { label: 'LINKED_NET', icon: 'work', color: 'primary-container' },
-                    { label: 'MEDIA_FLOW', icon: 'play_circle', color: 'secondary' },
-                  ].map((node) => (
+                  {SOCIAL_CONNECTIVITY_NODES.map((node) => (
                     <HolographicCard key={node.label}>
                       <button className="group flex items-center gap-4 p-5 rounded-xl transition-all cursor-pointer h-full w-full bg-transparent border-none text-left" type="button">
                         <div className={`w-12 h-12 flex items-center justify-center rounded-xl bg-white/[0.03] text-${node.color} group-hover:bg-${node.color} group-hover:text-black transition-all duration-500 shadow-inner`}>
