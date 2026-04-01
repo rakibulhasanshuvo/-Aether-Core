@@ -9,6 +9,9 @@ import Image from 'next/image';
 
 const MotionImage = motion(Image);
 
+const LEAD_ARCHITECT_TECH = ['Quantum_DB', 'Rust_Core', 'Neural_UI'] as const;
+const INTERFACE_NODE_TECH = ['Design_Ops', 'React_Fiber', 'WebGL'] as const;
+
 export default function TransmissionsPage() {
   return (
     <PageTransition>
@@ -68,7 +71,7 @@ export default function TransmissionsPage() {
                         Orchestrating the transition from monolithic legacy systems to decentralized, glassmorphic interfaces. Implementing sub-10ms latency protocols for high-frequency transmissions.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {['Quantum_DB', 'Rust_Core', 'Neural_UI'].map(tech => (
+                        {LEAD_ARCHITECT_TECH.map(tech => (
                           <span key={tech} className="text-[9px] px-3 py-1 border border-white/10 bg-white/[0.03] rounded uppercase tracking-widest text-on-surface-variant group-hover/card:border-primary-container/30 transition-colors">
                             {tech}
                           </span>
@@ -139,7 +142,7 @@ export default function TransmissionsPage() {
                         Pioneered the &apos;Aether-Glass&apos; design system, reducing cognitive load in high-stress data environments by 40%. Led a team of 12 designers across 3 timezones.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {['Design_Ops', 'React_Fiber', 'WebGL'].map(tech => (
+                        {INTERFACE_NODE_TECH.map(tech => (
                           <span key={tech} className="text-[9px] px-3 py-1 border border-white/10 bg-white/[0.03] rounded uppercase tracking-widest text-on-surface-variant group-hover/card:border-secondary/30 transition-colors">
                             {tech}
                           </span>
