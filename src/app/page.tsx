@@ -100,9 +100,8 @@ export default function Home() {
                           style={{ 
                             backgroundColor: `${node.accent}10`, 
                             color: node.accent,
-                            // @ts-ignore
                             '--accent-color': `${node.accent}40`
-                          } as any}
+                          }}
                         >
                           <span className="material-symbols-outlined text-2xl" translate="no" aria-hidden="true">{node.icon}</span>
                         </div>

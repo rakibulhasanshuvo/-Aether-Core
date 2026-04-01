@@ -35,7 +35,7 @@ export default function TransmissionsPage() {
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: EASE as any }}
+            transition={{ duration: 1.5, ease: EASE }}
             className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary-container via-secondary-container to-transparent opacity-30 origin-top shadow-[0_0_15px_rgba(0,242,255,0.2)]"
           />
           

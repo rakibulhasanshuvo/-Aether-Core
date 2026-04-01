@@ -26,7 +26,7 @@ export default function Sidebar() {
       animate={{ 
         width: isHovered ? 256 : 80,
       }}
-      transition={{ duration: 0.5, ease: EASE as any }}
+      transition={{ duration: 0.5, ease: EASE }}
       className="fixed left-0 top-0 h-full z-[60] border-r border-white/10 bg-[#0E0E0E] flex flex-col py-8 overflow-hidden shadow-[20px_0_40px_rgba(0,0,0,0.5)]"
     >
       {/* Brand Header */}
