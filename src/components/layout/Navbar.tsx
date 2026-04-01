@@ -19,7 +19,7 @@ export default function Navbar() {
     <motion.nav 
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: DURATION_FLUID, ease: EASE as any }}
+      transition={{ duration: DURATION_FLUID, ease: EASE }}
       className="fixed top-0 left-20 right-0 z-50 overflow-hidden"
     >
       {/* Gradient fade background for depth */}

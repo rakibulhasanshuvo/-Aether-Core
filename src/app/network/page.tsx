@@ -267,7 +267,7 @@ export default function NetworkPage() {
           <div className="h-16 w-full glass-card overflow-hidden flex items-center px-8 gap-8 rounded-2xl bg-white/[0.01] border-white/5">
             <div className="h-2 w-48 bg-white/5 rounded-full relative overflow-hidden">
               <motion.div 
-                animate={{ left: ['-100%', '200%'] } as any}
+                animate={{ left: ['-100%', '200%'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-y-0 w-1/3 bg-primary-container/40"
               />

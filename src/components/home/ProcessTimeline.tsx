@@ -60,7 +60,7 @@ export default function ProcessTimeline() {
             style={{
               height: pathHeight,
               '--primary-container': '#00F2FF'
-            } as any}
+            }}
           />
         </div>
 
@@ -99,7 +99,7 @@ export default function ProcessTimeline() {
 
                     {/* Timeline Node */}
                     <div className="absolute left-8 md:relative md:left-auto w-10 h-10 md:w-12 md:h-12 flex items-center justify-center -translate-x-1/2 md:translate-x-0 bg-[#050505] rounded-full border border-white/10 z-20 shrink-0 mx-auto">
-                      <div className="w-4 h-4 rounded-full bg-black border-2 border-primary-container flex items-center justify-center shadow-[0_0_10px_var(--primary-container)]" style={{ '--primary-container': '#00F2FF' } as any}>
+                      <div className="w-4 h-4 rounded-full bg-black border-2 border-primary-container flex items-center justify-center shadow-[0_0_10px_var(--primary-container)]" style={{ '--primary-container': '#00F2FF' }}>
                         <motion.div
                            initial={{ scale: 0 }}
                            whileInView={{ scale: 1 }}
