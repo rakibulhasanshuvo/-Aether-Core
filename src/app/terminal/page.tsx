@@ -43,17 +43,24 @@ const logs = [
   }
 ];
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function TerminalPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    if (!isSubmitting) return;
+
+    const timeout = setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [isSubmitting]);
+
   const handleSubmit = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-    }, 2000);
   };
 
   return (
