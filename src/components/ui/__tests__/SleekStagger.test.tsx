@@ -1,6 +1,15 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { SleekStagger, SleekItem } from '../MotionEffects';
 import { describe, it, expect, vi } from 'vitest';
+
+interface MockMotionProps extends React.HTMLAttributes<HTMLDivElement> {
+  initial?: unknown;
+  whileInView?: unknown;
+  viewport?: unknown;
+  variants?: unknown;
+  transition?: unknown;
+}
 
 // Mock framer-motion to simplify testing if needed,
 // but usually we want to test if it renders the children.
@@ -9,7 +18,7 @@ vi.mock('framer-motion', async () => {
   return {
     ...actual,
     motion: {
-      div: ({ children, className, ...props }: any) => (
+      div: ({ children, className, ...props }: MockMotionProps) => (
         <div className={className} data-testid="motion-div" {...props}>
           {children}
         </div>
