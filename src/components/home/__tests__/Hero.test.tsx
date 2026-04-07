@@ -3,23 +3,32 @@ import { describe, it, expect, vi } from 'vitest';
 import Hero from '../Hero';
 import React from 'react';
 
+interface MockMotionProps extends React.HTMLAttributes<HTMLElement> {
+  initial?: unknown;
+  animate?: unknown;
+  whileHover?: unknown;
+  transition?: unknown;
+  variants?: unknown;
+  viewport?: unknown;
+}
+
 // Mock framer-motion
 vi.mock('framer-motion', async () => {
   const actual = await vi.importActual('framer-motion');
   return {
     ...actual,
     motion: {
-      div: ({ children, className, style, ...props }: any) => (
+      div: ({ children, className, style, ...props }: MockMotionProps) => (
         <div className={className} style={style} data-testid="motion-div" {...props}>
           {children}
         </div>
       ),
-      span: ({ children, className, ...props }: any) => (
+      span: ({ children, className, ...props }: MockMotionProps) => (
         <span className={className} data-testid="motion-span" {...props}>
           {children}
         </span>
       ),
-      h1: ({ children, className, ...props }: any) => (
+      h1: ({ children, className, ...props }: MockMotionProps) => (
         <h1 className={className} data-testid="motion-h1" {...props}>
           {children}
         </h1>
@@ -33,13 +42,13 @@ vi.mock('framer-motion', async () => {
 
 // Mock MotionEffects components
 vi.mock('@/components/ui/MotionEffects', () => ({
-  SleekStagger: ({ children, className }: any) => (
+  SleekStagger: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="sleek-stagger" className={className}>{children}</div>
   ),
-  SleekItem: ({ children, className }: any) => (
+  SleekItem: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="sleek-item" className={className}>{children}</div>
   ),
-  TextScramble: ({ text, className }: any) => (
+  TextScramble: ({ text, className }: { text: string; className?: string }) => (
     <span data-testid="text-scramble" className={className}>{text}</span>
   ),
   EASE: [0.22, 1, 0.36, 1],
