@@ -30,11 +30,13 @@ export function TextScramble({
     let iteration = 0;
     let interval: ReturnType<typeof setInterval>;
     
+    // Hoist array creation outside the interval loop to avoid redundant allocations
+    const textArray = text.split('');
+
     const timeout = setTimeout(() => {
       interval = setInterval(() => {
         setDisplayText(
-          text
-            .split('')
+          textArray
             .map((char, index) => {
               if (index < iteration) return char;
               return chars[Math.floor(Math.random() * chars.length)];
