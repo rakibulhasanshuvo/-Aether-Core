@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import Hero from '../Hero';
 import React from 'react';
 
@@ -56,6 +56,10 @@ vi.mock('@/components/ui/MotionEffects', () => ({
 }));
 
 describe('Hero Component', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it('renders all key elements correctly', () => {
     render(<Hero />);
 

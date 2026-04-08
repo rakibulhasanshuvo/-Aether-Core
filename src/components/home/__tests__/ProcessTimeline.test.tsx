@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import ProcessTimeline from '../ProcessTimeline';
 import React from 'react';
 
@@ -36,6 +36,10 @@ vi.mock('@/components/ui/MotionEffects', () => ({
 }));
 
 describe('ProcessTimeline Component', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it('renders the section header correctly', () => {
     render(<ProcessTimeline />);
     expect(screen.getByText('SYSTEM_DEPLOYMENT_PROTOCOL')).toBeDefined();
