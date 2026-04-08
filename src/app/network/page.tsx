@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/components/ui/MotionEffects';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const SIGNAL_STRENGTH_VALUES = [0.4, 0.6, 0.8, 0.3];
 
@@ -18,22 +18,26 @@ const SOCIAL_CONNECTIVITY_NODES = [
 
 export default function NetworkPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (!isSubmitting) return;
-
-    // Simulate network latency
-    const timeout = setTimeout(() => {
-      setIsSubmitting(false);
-    }, 2500);
-
-    return () => clearTimeout(timeout);
-  }, [isSubmitting]);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
+
     setIsSubmitting(true);
+
+    // Simulate network latency
+    timeoutRef.current = setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2500);
   };
 
   return (
