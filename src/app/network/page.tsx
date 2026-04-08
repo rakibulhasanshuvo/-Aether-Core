@@ -31,6 +31,7 @@ export default function NetworkPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
+
     setIsSubmitting(true);
 
     // Simulate network latency
