@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/components/ui/MotionEffects';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 const SIGNAL_STRENGTH_VALUES = [0.4, 0.6, 0.8, 0.3];
 
