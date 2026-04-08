@@ -3,19 +3,14 @@ import { describe, it, expect, vi } from 'vitest';
 import ProcessTimeline from '../ProcessTimeline';
 import React from 'react';
 
-interface MockMotionProps extends React.HTMLAttributes<HTMLDivElement> {
+interface MockMotionProps extends React.HTMLAttributes<HTMLElement> {
   initial?: unknown;
-  whileInView?: unknown;
-  viewport?: unknown;
-  variants?: unknown;
-  transition?: unknown;
   animate?: unknown;
-  exit?: unknown;
-}
-
-interface MockComponentProps {
-  children?: React.ReactNode;
-  className?: string;
+  whileInView?: unknown;
+  whileHover?: unknown;
+  transition?: unknown;
+  variants?: unknown;
+  viewport?: unknown;
 }
 
 // Mock framer-motion
@@ -39,13 +34,13 @@ vi.mock('framer-motion', async () => {
 
 // Mock MotionEffects components
 vi.mock('@/components/ui/MotionEffects', () => ({
-  SleekStagger: ({ children, className }: MockComponentProps) => (
+  SleekStagger: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="sleek-stagger" className={className}>{children}</div>
   ),
-  SleekItem: ({ children, className }: MockComponentProps) => (
+  SleekItem: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="sleek-item" className={className}>{children}</div>
   ),
-  HolographicCard: ({ children, className }: MockComponentProps) => (
+  HolographicCard: ({ children, className }: { children: React.ReactNode; className?: string }) => (
     <div data-testid="holographic-card" className={className}>{children}</div>
   ),
 }));
