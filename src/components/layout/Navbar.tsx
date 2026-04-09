@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { EASE, DURATION_FLUID, TextScramble } from '@/components/ui/MotionEffects';
 
 const navLinks = [
@@ -14,6 +14,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <motion.nav 
@@ -74,27 +75,84 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Right: CTA */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Link
-            href="/network"
-            className="group relative overflow-hidden px-8 py-2.5 rounded-full font-headline uppercase text-[10px] tracking-[0.2em] font-bold transition-all duration-300 block"
+        {/* Right: CTA and Mobile Menu Toggle */}
+        <div className="flex items-center gap-4">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="hidden lg:block"
           >
-            {/* Gradient border effect */}
-            <div className="absolute inset-0 rounded-full p-[1px]">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-container via-secondary-container to-primary-container"></div>
-              <div className="absolute inset-[1px] rounded-full bg-[#0E0E0E] group-hover:bg-transparent transition-colors duration-300"></div>
+            <Link
+              href="/network"
+              className="group relative overflow-hidden px-8 py-2.5 rounded-full font-headline uppercase text-[10px] tracking-[0.2em] font-bold transition-all duration-300 block"
+            >
+              {/* Gradient border effect */}
+              <div className="absolute inset-0 rounded-full p-[1px]">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-container via-secondary-container to-primary-container"></div>
+                <div className="absolute inset-[1px] rounded-full bg-[#0E0E0E] group-hover:bg-transparent transition-colors duration-300"></div>
+              </div>
+              <span className="relative z-10 text-primary-container group-hover:text-[#002022] transition-colors duration-300">
+                Network Access
+              </span>
+            </Link>
+          </motion.div>
+
+          <button
+            type="button"
+            className="lg:hidden p-2 text-on-surface-variant hover:text-primary-container transition-colors"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle mobile menu"
+            data-testid="mobile-menu-toggle"
+          >
+            <div className="w-6 h-5 relative flex flex-col justify-between">
+              <span className={`w-full h-[2px] bg-current transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[9px]' : ''}`}></span>
+              <span className={`w-full h-[2px] bg-current transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`w-full h-[2px] bg-current transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[9px]' : ''}`}></span>
             </div>
-            <span className="relative z-10 text-primary-container group-hover:text-[#002022] transition-colors duration-300">
-              Network Access
-            </span>
-          </Link>
-        </motion.div>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-[#0E0E0E] border-b border-white/[0.06] overflow-hidden"
+            data-testid="mobile-menu"
+          >
+            <div className="flex flex-col px-8 py-4 gap-4">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`font-headline text-xs tracking-[0.15em] uppercase py-2 transition-colors ${
+                      isActive ? 'text-primary-container' : 'text-on-surface-variant hover:text-white'
+                    }`}
+                    data-testid={`mobile-link-${link.href}`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <Link
+                href="/network"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-4 inline-block text-center px-8 py-3 rounded-full font-headline uppercase text-[10px] tracking-[0.2em] font-bold bg-primary-container text-[#002022] hover:bg-white transition-colors"
+                data-testid="mobile-link-/network"
+              >
+                Network Access
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Bottom accent line */}
       <div className="absolute bottom-0 left-20 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent"></div>

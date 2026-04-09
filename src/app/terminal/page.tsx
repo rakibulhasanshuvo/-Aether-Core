@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble, EASE } from '@/components/ui/MotionEffects';
@@ -42,8 +42,6 @@ const logs = [
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCNldvgXKm5-oglznbF-VV6gXyzJWLZw9D3VY71vFYyzlyaucKr4FSzxmeXG4DD4ANePnZkmeGteGIOYUREuJ2ecTMH1kHp54LhblgBVMMihEjdSw_MgFrirauJk-6hqmbxs7HZC53yUNXnZZdH9cI16C7o5rSpBV9Zd7N6ocm93vo4bnKQq_bZ2JxscwSadWLrxzBs7Pwxvw7GfAZ5KWNat_WPiNpxKnnVsuOH_wbLZO19wFWtobTh8l8DF1SjvAxom3tdtFJ6sOo'
   }
 ];
-
-import { useState, useEffect } from 'react';
 
 export default function TerminalPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
