@@ -32,17 +32,20 @@ export function TextScramble({
     
     // Hoist array creation outside the interval loop to avoid redundant allocations
     const textArray = text.split('');
+    const charsLength = chars.length;
+    const outputArray = new Array(textArray.length);
 
     const timeout = setTimeout(() => {
       interval = setInterval(() => {
-        setDisplayText(
-          textArray
-            .map((char, index) => {
-              if (index < iteration) return char;
-              return chars[Math.floor(Math.random() * chars.length)];
-            })
-            .join('')
-        );
+        for (let i = 0; i < textArray.length; i++) {
+          if (i < iteration) {
+            outputArray[i] = textArray[i];
+          } else {
+            outputArray[i] = chars[Math.floor(Math.random() * charsLength)];
+          }
+        }
+
+        setDisplayText(outputArray.join(''));
 
         if (iteration >= text.length) {
           clearInterval(interval);
