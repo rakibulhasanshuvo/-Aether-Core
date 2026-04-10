@@ -145,9 +145,11 @@ export default function NetworkPage() {
                       <label className="absolute -top-7 left-0 font-headline text-[10px] tracking-[0.2em] uppercase text-on-surface-variant/40 group-focus-within/field:text-primary-container transition-colors" htmlFor="identity-string">Identity_String</label>
                       <input
                         id="identity-string"
+                        name="identity"
                         className="w-full bg-transparent border-b border-white/10 py-4 font-headline text-on-surface placeholder:text-on-surface-variant/20 focus:outline-none focus:border-primary-container transition-all text-lg"
                         placeholder="SUBJECT_NAME"
                         type="text"
+                        required
                       />
                       <motion.div 
                         initial={false}
@@ -159,9 +161,12 @@ export default function NetworkPage() {
                       <label className="absolute -top-7 left-0 font-headline text-[10px] tracking-[0.2em] uppercase text-on-surface-variant/40 group-focus-within/field:text-primary-container transition-colors" htmlFor="return-route">Return_Route</label>
                       <input
                         id="return-route"
+                        name="email"
                         className="w-full bg-transparent border-b border-white/10 py-4 font-headline text-on-surface placeholder:text-on-surface-variant/20 focus:outline-none focus:border-primary-container transition-all text-lg"
                         placeholder="EMAIL_ADDR"
                         type="email"
+                        required
+                        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
                       />
                     </div>
                   </div>
@@ -170,6 +175,7 @@ export default function NetworkPage() {
                     <label className="absolute -top-7 left-0 font-headline text-[10px] tracking-[0.2em] uppercase text-on-surface-variant/40 group-focus-within/field:text-primary-container transition-colors" htmlFor="transmission-objective">Transmission_Objective</label>
                     <select
                       id="transmission-objective"
+                      name="objective"
                       className="w-full bg-transparent border-b border-white/10 py-4 font-headline text-on-surface focus:outline-none focus:border-primary-container transition-all appearance-none cursor-pointer text-lg"
                     >
                       <option className="bg-[#131313]">SYSTEM_INQUIRY</option>
@@ -186,9 +192,11 @@ export default function NetworkPage() {
                     <label className="absolute -top-2 left-0 font-headline text-[10px] tracking-[0.2em] uppercase text-on-surface-variant/40 group-focus-within/field:text-primary-container transition-colors" htmlFor="signal-payload">Signal_Payload</label>
                     <textarea
                       id="signal-payload"
+                      name="payload"
                       className="w-full bg-white/[0.02] border border-white/5 p-8 font-headline text-on-surface placeholder:text-on-surface-variant/20 focus:outline-none focus:border-primary-container/30 transition-all rounded-2xl resize-none text-lg leading-relaxed"
                       placeholder="TYPE_MESSAGE_HERE..."
                       rows={6}
+                      required
                     ></textarea>
                   </div>
 
@@ -197,7 +205,9 @@ export default function NetworkPage() {
                       <input 
                         className="peer opacity-0 absolute inset-0 cursor-pointer w-6 h-6" 
                         id="verification" 
+                        name="verification"
                         type="checkbox"
+                        required
                       />
                       <div className="w-6 h-6 border-2 border-white/10 rounded-md peer-checked:bg-primary-container peer-checked:border-primary-container transition-all flex items-center justify-center">
                         <motion.span 

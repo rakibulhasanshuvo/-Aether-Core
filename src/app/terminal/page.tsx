@@ -56,7 +56,8 @@ export default function TerminalPage() {
     return () => clearTimeout(timeout);
   }, [isSubmitting]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (isSubmitting) return;
     setIsSubmitting(true);
   };
@@ -245,24 +246,27 @@ export default function TerminalPage() {
                   <p className="text-on-surface-variant/60 font-body text-base max-w-sm">
                     Subscribe to encrypted updates directly to your neural interface for real-time architectural shifts.
                   </p>
-                  <div className="flex gap-3 group/input">
+                  <form onSubmit={handleSubmit} className="flex gap-3 group/input">
                     <input
                       className="bg-[#131313] border border-white/5 focus:border-primary-container/30 focus:outline-none px-6 py-4 text-on-surface font-mono rounded-xl w-full text-sm transition-all disabled:opacity-50"
                       placeholder="neural-id@domain.net"
                       type="email"
+                      name="email"
                       aria-label="Email address for updates"
                       disabled={isSubmitting}
+                      required
+                      pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
                     />
                     <motion.button 
                       whileHover={!isSubmitting ? { scale: 1.05 } : undefined}
                       whileTap={!isSubmitting ? { scale: 0.95 } : undefined}
-                      onClick={handleSubmit}
+                      type="submit"
                       disabled={isSubmitting}
                       className={`bg-primary-container text-[#002022] px-10 py-4 rounded-xl font-bold uppercase font-headline text-[10px] tracking-widest whitespace-nowrap shadow-[0_0_20px_rgba(0,242,255,0.2)] ${isSubmitting ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
                     >
                       {isSubmitting ? 'UPLOADING...' : 'Transmit'}
                     </motion.button>
-                  </div>
+                  </form>
                 </div>
                 <div className="hidden md:block text-right space-y-1 font-mono text-[9px] text-on-surface-variant/20 tracking-widest uppercase">
                   <p>LATENCY: 12.0004ms</p>
