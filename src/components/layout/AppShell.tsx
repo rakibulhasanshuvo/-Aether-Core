@@ -5,7 +5,7 @@ import Sidebar from '@/components/layout/Sidebar';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { AetherAura } from '@/components/ui/MotionEffects';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
