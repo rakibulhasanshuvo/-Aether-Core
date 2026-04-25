@@ -35,18 +35,23 @@ export function TextScramble({
     const charsLength = chars.length;
     const textLen = textArray.length;
     const outputArray = new Array(textLen);
+    const randomValues = new Uint32Array(textLen);
 
     const timeout = setTimeout(() => {
       interval = setInterval(() => {
         const fixedUntil = Math.ceil(iteration);
         const limit = fixedUntil < textLen ? fixedUntil : textLen;
 
+        if (limit < textLen) {
+          window.crypto.getRandomValues(randomValues);
+        }
+
         for (let i = 0; i < limit; i++) {
           outputArray[i] = textArray[i];
         }
 
         for (let i = limit; i < textLen; i++) {
-          outputArray[i] = chars[Math.floor(Math.random() * charsLength)];
+          outputArray[i] = chars[randomValues[i] % charsLength];
         }
 
         setDisplayText(outputArray.join(''));

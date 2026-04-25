@@ -11,3 +11,8 @@
 **Vulnerability:** Forms in the terminal and network pages lacked native HTML5 validation (required, pattern) and proper form semantics, allowing malformed or empty submissions.
 **Learning:** Client-side validation is a first line of defense that improves UX and prevents common data integrity issues before they reach the backend. Using proper <form> elements ensures accessibility and consistent behavior across browsers.
 **Prevention:** Always use <form> elements for user input, and implement native HTML5 validation attributes (required, type, pattern) as a baseline for all input fields.
+
+## 2026-04-20 - Insecure Randomness (Math.random) in TextScramble
+**Vulnerability:** The `TextScramble` component used `Math.random()` to generate random characters for a visual effect. While not critical for UI, `Math.random()` is PRNG-based and predictable.
+**Learning:** For security-sensitive applications, using cryptographically strong random number generators (CSPRNG) like `window.crypto.getRandomValues()` is essential to prevent predictability and potential entropy-related attacks.
+**Prevention:** Replace `Math.random()` with `window.crypto.getRandomValues()` when randomness is required. In performance-sensitive contexts like animation loops, optimize by pre-allocating a typed array buffer to minimize allocations.
