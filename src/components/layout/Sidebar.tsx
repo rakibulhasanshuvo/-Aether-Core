@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { EASE, DURATION_BASE, SleekStagger, SleekItem } from '@/components/ui/MotionEffects';
+import { EASE, SleekStagger, SleekItem } from '@/components/ui/MotionEffects';
 
 const navItems = [
   { href: '/', label: 'Home', icon: 'home' },
