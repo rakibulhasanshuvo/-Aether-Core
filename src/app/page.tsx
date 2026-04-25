@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import Hero from '@/components/home/Hero';
 import ProcessTimeline from '@/components/home/ProcessTimeline';
@@ -47,6 +47,63 @@ const stats = [
 ];
 
 export default function Home() {
+  const memoizedStats = useMemo(() => stats.map((stat) => (
+    <SleekItem key={stat.label}>
+      <div className="glass-card p-6 rounded-xl text-center group hover:bg-white/[0.02] transition-colors duration-500">
+        <motion.div
+          initial={{ scale: 0.5, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 200, delay: 0.8 }}
+          className="text-3xl font-headline font-black text-primary-container mb-1"
+        >
+          {stat.value}
+        </motion.div>
+        <div className="text-[10px] font-headline uppercase tracking-widest text-on-surface-variant/60 group-hover:text-on-surface-variant transition-colors">
+          {stat.label}
+        </div>
+      </div>
+    </SleekItem>
+  )), []);
+
+  const memoizedNodes = useMemo(() => quickNodes.map((node) => (
+    <SleekItem key={node.href}>
+      <HolographicCard>
+        <Link
+          href={node.href}
+          className="group p-8 rounded-xl transition-all duration-500 relative overflow-hidden block cursor-pointer"
+        >
+          <div className="flex items-start gap-8">
+            <div
+              className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_var(--accent-color)]"
+              style={{
+                backgroundColor: `${node.accent}10`,
+                color: node.accent,
+                '--accent-color': `${node.accent}40`
+              } as React.CSSProperties}
+            >
+              <span className="material-symbols-outlined text-2xl" translate="no" aria-hidden="true">{node.icon}</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-headline text-xl font-bold text-on-surface uppercase tracking-tight mb-2 group-hover:text-primary-container transition-colors">
+                {node.title}
+              </h3>
+              <p className="text-sm text-on-surface-variant/70 leading-relaxed group-hover:text-on-surface-variant transition-colors">
+                {node.desc}
+              </p>
+            </div>
+            <motion.span
+              whileHover={{ x: 5 }}
+              className="material-symbols-outlined text-on-surface-variant/30 group-hover:text-primary-container transition-colors flex-shrink-0 mt-2"
+              aria-hidden="true"
+            >
+              arrow_forward_ios
+            </motion.span>
+          </div>
+        </Link>
+      </HolographicCard>
+    </SleekItem>
+  )), []);
+
   return (
     <PageTransition>
       <div className="flex flex-col flex-grow">
@@ -56,23 +113,7 @@ export default function Home() {
 
           {/* Stats Bar */}
           <SleekStagger className="grid grid-cols-2 md:grid-cols-4 gap-4" delay={0.6}>
-            {stats.map((stat) => (
-              <SleekItem key={stat.label}>
-                <div className="glass-card p-6 rounded-xl text-center group hover:bg-white/[0.02] transition-colors duration-500">
-                  <motion.div 
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ type: 'spring', stiffness: 200, delay: 0.8 }}
-                    className="text-3xl font-headline font-black text-primary-container mb-1"
-                  >
-                    {stat.value}
-                  </motion.div>
-                  <div className="text-[10px] font-headline uppercase tracking-widest text-on-surface-variant/60 group-hover:text-on-surface-variant transition-colors">
-                    {stat.label}
-                  </div>
-                </div>
-              </SleekItem>
-            ))}
+            {memoizedStats}
           </SleekStagger>
 
           {/* Quick Navigation Nodes */}
@@ -87,44 +128,7 @@ export default function Home() {
             </SleekStagger>
             
             <SleekStagger className="grid grid-cols-1 md:grid-cols-2 gap-8" stagger={0.1}>
-              {quickNodes.map((node) => (
-                <SleekItem key={node.href}>
-                  <HolographicCard>
-                    <Link
-                      href={node.href}
-                      className="group p-8 rounded-xl transition-all duration-500 relative overflow-hidden block cursor-pointer"
-                    >
-                      <div className="flex items-start gap-8">
-                        <div
-                          className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_0_20px_var(--accent-color)]"
-                          style={{ 
-                            backgroundColor: `${node.accent}10`, 
-                            color: node.accent,
-                            '--accent-color': `${node.accent}40`
-                          }}
-                        >
-                          <span className="material-symbols-outlined text-2xl" translate="no" aria-hidden="true">{node.icon}</span>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-headline text-xl font-bold text-on-surface uppercase tracking-tight mb-2 group-hover:text-primary-container transition-colors">
-                            {node.title}
-                          </h3>
-                          <p className="text-sm text-on-surface-variant/70 leading-relaxed group-hover:text-on-surface-variant transition-colors">
-                            {node.desc}
-                          </p>
-                        </div>
-                        <motion.span 
-                          whileHover={{ x: 5 }}
-                          className="material-symbols-outlined text-on-surface-variant/30 group-hover:text-primary-container transition-colors flex-shrink-0 mt-2"
-                          aria-hidden="true"
-                        >
-                          arrow_forward_ios
-                        </motion.span>
-                      </div>
-                    </Link>
-                  </HolographicCard>
-                </SleekItem>
-              ))}
+              {memoizedNodes}
             </SleekStagger>
           </section>
 
