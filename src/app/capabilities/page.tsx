@@ -8,6 +8,20 @@ import Image from 'next/image';
 
 const MotionImage = motion(Image);
 
+const DISTRIBUTED_SERVICES_TAGS = [
+  'Edge Computing',
+  'Micro-Frontends',
+  'Serverless',
+  'p2p_sync',
+] as const;
+
+const TECHNICAL_SKILLS = [
+  { label: 'Frontend Synthesis', value: '94%', color: 'primary-container' },
+  { label: 'Backend Logic', value: '89%', color: 'secondary' },
+  { label: 'WebGL / GLSL', value: '76%', color: '[#00dbe7]' },
+  { label: 'DevOps / CI-CD', value: '82%', color: 'on-surface' },
+] as const;
+
 export default function CapabilitiesPage() {
   return (
     <PageTransition>
@@ -109,8 +123,11 @@ export default function CapabilitiesPage() {
                     </p>
                   </div>
                   <div className="flex gap-4 mt-12 flex-wrap">
-                    {['Edge Computing', 'Micro-Frontends', 'Serverless', 'p2p_sync'].map(tag => (
-                      <span key={tag} className="px-5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-headline uppercase tracking-widest text-[#B9CACB]">
+                    {DISTRIBUTED_SERVICES_TAGS.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-5 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-headline uppercase tracking-widest text-[#B9CACB]"
+                      >
                         {tag}
                       </span>
                     ))}
@@ -202,12 +219,7 @@ export default function CapabilitiesPage() {
             </SleekStagger>
             
             <SleekStagger className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { label: 'Frontend Synthesis', value: '94%', color: 'primary-container' },
-                { label: 'Backend Logic', value: '89%', color: 'secondary' },
-                { label: 'WebGL / GLSL', value: '76%', color: '[#00dbe7]' },
-                { label: 'DevOps / CI-CD', value: '82%', color: 'on-surface' },
-              ].map((skill, i) => (
+              {TECHNICAL_SKILLS.map((skill, i) => (
                 <SleekItem key={skill.label}>
                   <div className="glass-card p-8 rounded-xl text-center group border-white/5 hover:bg-white/[0.03] transition-all duration-500">
                     <motion.div 
