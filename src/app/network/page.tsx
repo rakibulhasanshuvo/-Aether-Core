@@ -269,7 +269,7 @@ export default function NetworkPage() {
                     <span className="font-headline text-[9px] tracking-[0.2em] text-on-surface-variant/40 uppercase">Node_Status: <span className="text-secondary opacity-60">Handshaking</span></span>
                   </div>
                   <div className="font-headline text-[9px] tracking-[0.2em] text-on-surface-variant/40 uppercase">
-                    Auth_Code: <span className="text-on-surface/60 font-mono">#ARCH_7701_VOID</span>
+                    Auth_Code: <span className="text-on-surface/60 font-mono">{process.env.NEXT_PUBLIC_NETWORK_AUTH_CODE || '#AUTH_PENDING'}</span>
                   </div>
                 </div>
               </div>
