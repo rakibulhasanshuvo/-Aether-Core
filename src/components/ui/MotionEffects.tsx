@@ -201,25 +201,3 @@ export function AetherAura() {
   );
 }
 
-/**
- * Legacy Components (for backward compatibility during migration)
- */
-export function StaggerContainer({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <SleekStagger className={className}>{children}</SleekStagger>;
-}
-
-export function StaggerItem({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <SleekItem className={className}>{children}</SleekItem>;
-}
-
-export function HoverCard({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return (
-    <motion.div
-      className={className}
-      whileHover={{ scale: 1.02, transition: { type: 'spring', stiffness: 400, damping: 17 } }}
-      whileTap={{ scale: 0.98 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
