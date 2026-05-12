@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import PageTransition from '@/components/ui/PageTransition';
 import { SleekStagger, SleekItem, HolographicCard, TextScramble } from '@/components/ui/MotionEffects';
 
-import { useState, useEffect, useRef } from 'react';
-
 const SIGNAL_STRENGTH_VALUES = [0.4, 0.6, 0.8, 0.3];
 
 const SOCIAL_CONNECTIVITY_NODES = [
@@ -17,27 +15,9 @@ const SOCIAL_CONNECTIVITY_NODES = [
 ];
 
 export default function NetworkPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-
-    // Simulate network latency
-    timeoutRef.current = setTimeout(() => {
-      setIsSubmitting(false);
-    }, 2500);
+    // Signal handshake initialized
   };
 
   return (
@@ -227,33 +207,17 @@ export default function NetworkPage() {
                   </div>
 
                   <motion.button 
-                    whileHover={!isSubmitting ? { scale: 1.02 } : undefined}
-                    whileTap={!isSubmitting ? { scale: 0.98 } : undefined}
-                    className={`w-full group relative overflow-hidden p-[1px] rounded-2xl transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] ${isSubmitting ? 'cursor-not-allowed opacity-80' : 'cursor-pointer'}`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full group relative overflow-hidden p-[1px] rounded-2xl transition-all shadow-[0_0_30px_rgba(0,0,0,0.5)] cursor-pointer"
                     type="submit"
-                    disabled={isSubmitting}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-container via-secondary-container to-primary-container bg-[length:200%_auto] animate-gradient-x"></div>
-                    <div className={`relative bg-[#0a0a0a] py-8 flex justify-center items-center gap-6 rounded-[0.95rem] transition-colors duration-500 ${!isSubmitting ? 'group-hover:bg-transparent' : 'bg-[#050505]'}`}>
-                      {isSubmitting ? (
-                        <>
-                          <motion.div
-                            animate={{ opacity: [1, 0.5, 1] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                            className="font-headline font-black text-base tracking-[0.4em] uppercase text-primary-container flex items-center gap-4"
-                          >
-                            <span className="w-2 h-2 bg-primary-container shadow-[0_0_10px_rgba(0,242,255,0.8)] animate-pulse" />
-                            Transmitting...
-                          </motion.div>
-                        </>
-                      ) : (
-                        <>
-                          <span className="font-headline font-black text-base tracking-[0.4em] uppercase text-primary-container group-hover:text-[#002022] transition-colors">
-                            Broadcast_Signal
-                          </span>
-                          <span className="material-symbols-outlined text-primary-container group-hover:text-[#002022] text-xl" translate="no" aria-hidden="true">send</span>
-                        </>
-                      )}
+                    <div className="relative bg-[#0a0a0a] py-8 flex justify-center items-center gap-6 rounded-[0.95rem] transition-colors duration-500 group-hover:bg-transparent">
+                      <span className="font-headline font-black text-base tracking-[0.4em] uppercase text-primary-container group-hover:text-[#002022] transition-colors">
+                        Broadcast_Signal
+                      </span>
+                      <span className="material-symbols-outlined text-primary-container group-hover:text-[#002022] text-xl" translate="no" aria-hidden="true">send</span>
                     </div>
                   </motion.button>
                 </form>
