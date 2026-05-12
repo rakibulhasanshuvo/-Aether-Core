@@ -28,40 +28,53 @@ export function TextScramble({
   
   useEffect(() => {
     let iteration = 0;
-    let interval: ReturnType<typeof setInterval>;
+    let frameId: number;
+    let lastTime = 0;
     
-    // Hoist array creation outside the interval loop to avoid redundant allocations
+    // Hoist array creation outside the loop to avoid redundant allocations
     const textArray = text.split('');
     const charsLength = chars.length;
     const textLen = textArray.length;
     const outputArray = new Array(textLen);
 
-    const timeout = setTimeout(() => {
-      interval = setInterval(() => {
-        const fixedUntil = Math.ceil(iteration);
-        const limit = fixedUntil < textLen ? fixedUntil : textLen;
+    // Performance: Use a buffer for entropy to avoid Math.random() overhead in hot paths
+    const entropyBuffer = new Uint32Array(textLen);
 
-        for (let i = 0; i < limit; i++) {
-          outputArray[i] = textArray[i];
-        }
+    const animate = (time: number) => {
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
 
+      const fixedUntil = Math.ceil(iteration);
+      const limit = fixedUntil < textLen ? fixedUntil : textLen;
+
+      for (let i = 0; i < limit; i++) {
+        outputArray[i] = textArray[i];
+      }
+
+      if (limit < textLen) {
+        window.crypto.getRandomValues(entropyBuffer);
         for (let i = limit; i < textLen; i++) {
-          outputArray[i] = chars[Math.floor(Math.random() * charsLength)];
+          outputArray[i] = chars[entropyBuffer[i] % charsLength];
         }
+      }
 
-        setDisplayText(outputArray.join(''));
+      setDisplayText(outputArray.join(''));
 
-        if (iteration >= text.length) {
-          clearInterval(interval);
-        }
-        
-        iteration += 1 / 3;
-      }, 30);
+      if (iteration < textLen) {
+        // Animation speed: 1/3 iteration every 30ms = 1/90 iteration per ms
+        iteration += delta / 90;
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      frameId = requestAnimationFrame(animate);
     }, delay * 1000);
 
     return () => {
       clearTimeout(timeout);
-      clearInterval(interval);
+      cancelAnimationFrame(frameId);
     };
   }, [text, delay]);
 
