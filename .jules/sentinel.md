@@ -11,3 +11,8 @@
 **Vulnerability:** Forms in the terminal and network pages lacked native HTML5 validation (required, pattern) and proper form semantics, allowing malformed or empty submissions.
 **Learning:** Client-side validation is a first line of defense that improves UX and prevents common data integrity issues before they reach the backend. Using proper <form> elements ensures accessibility and consistent behavior across browsers.
 **Prevention:** Always use <form> elements for user input, and implement native HTML5 validation attributes (required, type, pattern) as a baseline for all input fields.
+
+## 2025-05-14 - Insecure PRNG in UI Animations
+**Vulnerability:** Use of `Math.random()` for generating random characters in `TextScramble`. While non-critical for UI effects, it is a predictable PRNG and can be flagged by security scanners.
+**Learning:** `Math.random()` does not provide cryptographically strong random values. For a more robust approach and to satisfy security hygiene, `crypto.getRandomValues()` should be used.
+**Prevention:** Use `window.crypto.getRandomValues()` for all random number generation, even in non-security-critical UI components, to ensure consistency and pass automated security audits.
